@@ -7,7 +7,6 @@ namespace WordsBreaker
 {
     internal static class StringExtensions
     {
-        
         public static bool ContainsInnerWord(this string word, string innerWord)
         {
             Regex regex = new Regex($@"{innerWord}(\w*)", RegexOptions.IgnoreCase);
@@ -69,7 +68,6 @@ namespace WordsBreaker
                     }
                 }
             }
-
             return res;
         }
     }
