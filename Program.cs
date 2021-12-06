@@ -15,10 +15,12 @@ namespace WordsBreaker
 
             List<string> smallWordsList = new List<string>();
 
-            string[] output = null;
+            string[] output = new string[allInWords.Length];
+            
+            int counter = 0;
 
             foreach (var word in allInWords)
-                {
+            {
                 smallWordsList.Clear();
 
                 foreach (var dictionaryWord in dictionaryWords)
@@ -57,19 +59,18 @@ namespace WordsBreaker
                     }
 
                     var res = word.ConsistsOfWords(smallWordsList);
-
-
-                    for (int i = 0; i < allInWords.Length; i++)
+                    
+                    
+                    if (res != null)
                     {
-                        if (res != null)
-                        {
-                            output[i] = $"(in) {word} -> (out) {string.Join(", ", res)}";
-                        }
-                        else
-                        {
-                            output[i] = $"(in) {word} -> (out) {word}";
-                        }
+                        output[counter] = $"(in) {word} -> (out) {string.Join(", ", res)}";
                     }
+                    else
+                    {
+                        output[counter] = $"(in) {word} -> (out) {word}";
+                    }
+
+                    counter++;
                 }
             }
 
