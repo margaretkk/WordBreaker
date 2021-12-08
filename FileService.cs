@@ -8,7 +8,7 @@ namespace WordsBreaker
         public static string[] ReadFile(string inputPath) => 
             File.ReadAllLines(inputPath);
 
-        public static void OutputFile() =>
-            File.WriteAllLines("files/output.tsv", StringExtensions.WordsProcessing(), Encoding.UTF8);
+        public static void OutputFile(string[] output) =>
+            File.WriteAllLines("files/output.tsv", output, Encoding.UTF8);
     }
 }
