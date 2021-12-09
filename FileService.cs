@@ -1,14 +1,49 @@
-﻿using System.IO;
+using System;
+using System.IO;
 using System.Text;
 
 namespace WordsBreaker
 {
     internal static class FileService
     {
-        public static string[] ReadFile(string inputPath) => 
-            File.ReadAllLines(inputPath);
+         private static FileService instance;
 
-        public static void OutputFile(string[] output) =>
-            File.WriteAllLines("files/output.tsv", output, Encoding.UTF8);
+        public static FileService Instance => instance ??= new FileService();
+
+        public Result<string[]> ReadFile(string path) 
+        {
+            var res = new Result<string[]>();
+
+            try
+            {
+                var readFile = File.ReadAllLines(path);
+
+                res.SetSuccess(readFile);
+            }
+            catch (Exception ex)
+            {
+                res.SetFailure(ex);
+            }
+
+            return res;
+        }
+
+        public Result WriteFile(string[] result)
+        {
+            var res = new Result();
+
+            try
+            {
+                File.WriteAllLines("files/output.tsv", result, Encoding.UTF8);
+
+                res.SetSuccess();
+            }
+            catch (Exception ex)
+            {
+                res.SetFailure(ex);
+            }
+
+            return res;
+        }
     }
 }
