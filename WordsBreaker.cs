@@ -13,6 +13,7 @@ namespace WordsBreaker
 
         private string pathToDictionary = "files/de-dictionary.tsv";
         private string pathToTaskWords = "files/de-test-words.tsv";
+        private string pathToOutput = "files/output.tsv";
 
         public void Run()
         {
@@ -83,7 +84,7 @@ namespace WordsBreaker
 
             }
 
-            FileService.Instance.WriteFile(output);
+            FileService.Instance.WriteFile(output, pathToOutput);
         }
     }
 }
