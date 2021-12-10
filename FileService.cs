@@ -28,13 +28,13 @@ namespace WordsBreaker
             return res;
         }
 
-        public Result WriteFile(string[] result)
+        public Result WriteFile(string[] result, string path)
         {
             var res = new Result();
 
             try
             {
-                File.WriteAllLines("files/output.tsv", result, Encoding.UTF8);
+                File.WriteAllLines(path, result, Encoding.UTF8);
 
                 res.SetSuccess();
             }
